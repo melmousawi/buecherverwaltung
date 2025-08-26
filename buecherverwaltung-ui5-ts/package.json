@@ -1,0 +1,22 @@
+{
+  "name": "buecherverwaltung-ui5-ts",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+  "build": "tsc && copyfiles -u 1 \"src/**/*.xml\" dist && copyfiles index.html dist",
+  "watch": "tsc -w",
+  "dev": "http-server . -p 5501 -c-1 --cors",
+  "start": "npm run build && npm run dev",
+  "ui5:serve": "ui5 serve",
+  "ui5:build": "ui5 build",
+  "ui5:deploy": "ui5 build --clean-dest --dest dist"
+},
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "copyfiles": "^2.4.1",
+    "@types/openui5": "^1.120.3",
+    "http-server": "^14.1.1",
+    "@ui5/cli": "^3.0.0",
+    "ui5-middleware-livereload": "^0.8.0"
+  }
+}

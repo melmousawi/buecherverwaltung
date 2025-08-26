@@ -1,0 +1,14 @@
+# Node.js Abhängigkeiten nicht ins Image kopieren
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Datenbankdatei soll nicht ins Image (wird als Volume gemountet)
+books.db
+
+# Build-/Konfigurationsdateien
+Dockerfile
+docker-compose.yml
+.dockerignore
+.git
+.gitignore

@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend-node-sqlite
+    command: npm run dev
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./backend-node-sqlite/books.db:/app/books.db  # SQLite Datei persistent halten
+
+  frontend:
+    build: ./buecherverwaltung-ui5-ts
+    ports:
+      - "8080:8080"
+    depends_on:
+      - backend

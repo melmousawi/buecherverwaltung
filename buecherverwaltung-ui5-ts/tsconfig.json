@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES5",
+    "module": "amd",
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": false,
+    "skipLibCheck": true,
+    "noEmitOnError": false,
+    "types": ["openui5"],
+    "lib": ["ES2015", "DOM"]
+  },
+  "include": ["src/**/*.ts"]
+}

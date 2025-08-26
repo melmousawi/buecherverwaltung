@@ -1,0 +1,15 @@
+<mvc:View
+  controllerName="buecherverwaltung.controller.App"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m">
+
+  <!--
+    Die App-View dient nur als Shell (Container).
+    Wir betten die Main-View ein, die die eigentliche Bücherliste enthält.
+  -->
+  <App id="app">
+    <pages>
+      <mvc:XMLView viewName="buecherverwaltung.view.Main" />
+    </pages>
+  </App>
+</mvc:View>

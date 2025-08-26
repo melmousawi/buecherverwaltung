@@ -1,0 +1,23 @@
+# Node.js
+node_modules/
+npm-debug.log
+
+# Build-Output
+dist/
+
+# TypeScript
+*.tsbuildinfo
+
+# SQLite DB
+*.db
+
+# Docker
+docker-data/
+*.log
+
+# VSCode
+.vscode/
+
+# Mac / Windows Systemfiles
+.DS_Store
+Thumbs.db

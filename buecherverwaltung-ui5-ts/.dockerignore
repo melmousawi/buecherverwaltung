@@ -1,0 +1,16 @@
+# Node.js Abhängigkeiten nicht ins Image kopieren
+node_modules
+dist
+npm-debug.log
+yarn-error.log
+
+# Lokale Build-Ergebnisse
+dist
+coverage
+
+# Build-/Konfigurationsdateien
+Dockerfile
+docker-compose.yml
+.dockerignore
+.git
+.gitignore

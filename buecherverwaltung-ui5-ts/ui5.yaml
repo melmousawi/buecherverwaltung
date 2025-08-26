@@ -1,0 +1,43 @@
+specVersion: '3.0'
+metadata:
+  name: buecherverwaltung-ui5-ts
+type: application
+framework:
+  name: SAPUI5
+  version: "1.120.0"
+  libraries:
+    - name: sap.m
+    - name: sap.ui.core
+    - name: sap.ui.layout
+server:
+  port: 5501
+  open: true
+  customMiddleware:
+    - name: ui5-middleware-livereload
+      afterMiddleware: compression
+      configuration:
+        debug: true
+        ext: "xml,json,properties"
+        port: 35729
+        path: "webapp"
+        delay: 500
+        ui: false
+resources:
+  configuration:
+    paths:
+      webapp: src
+      dist: dist
+builder:
+  resources:
+    excludes:
+      - "/test/**"
+      - "/localService/**"
+  customTasks:
+    - name: ui5-task-ts
+      afterTask: replaceVersion
+      configuration:
+        debug: true
+        tsConfig: tsconfig.json
+        outputPath: dist
+        outputPattern: "**/*.js"
+        sourceMap: true 
