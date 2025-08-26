@@ -5,13 +5,13 @@ services:
     build: ./backend-node-sqlite
     command: npm run dev
     ports:
-      - "3001:3001"
+      - "3001:3001"  # API erreichbar
     volumes:
       - ./backend-node-sqlite/books.db:/app/books.db  # SQLite Datei persistent halten
 
   frontend:
     build: ./buecherverwaltung-ui5-ts
     ports:
-      - "8080:8080"
+      - "8080:8080"  # UI erreichbar
     depends_on:
       - backend
