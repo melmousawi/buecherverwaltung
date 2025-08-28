@@ -1,77 +1,34 @@
-<!-- <mvc:View = Das ist ein UI5-View-Element (wie ein Container für meine UI) -->
-<!-- controllerName="buecherverwaltung.controller.Main verknüpft diese View mit dem Main-Controller (wo meine Logik steht). 
-Das ist der Name des Controllers, der für diese View verantwortlich ist. -->
-<!-- xmlns = Das ist ein Namespace-Präfix für die UI5-Bibliotheken -->
-<!-- xmlns:mvc = Das ist ein Namespace-Präfix für die UI5-MVC-Bibliotheken -->
-
 <mvc:View
   controllerName="buecherverwaltung.controller.Main"
   xmlns:mvc="sap.ui.core.mvc"
   xmlns="sap.m"
   xmlns:core="sap.ui.core">
 
-  <!-- 
-    Hauptseite für die Bücherverwaltung.
-    Enthält:
-    - Toolbar mit "Neues Buch"-Button
-    - Tabelle mit Büchern (Titel, Autor, Angelegt am, Angelegt von)
-    - Dialoge für Neues Buch & Bearbeiten 
-  -->
   <Page title="📚 Bücherverwaltung">
-
-    <!-- Inhalt der Seite -->
     <content>
 
-      <!-- Toolbar: Überschrift + Button -->
     <Toolbar class="sapUiSmallMarginBottom">
-        <!-- Titel -->
         <Title text="📖 Bücherliste" level="H2"/>
         <ToolbarSpacer/>
         <!-- Button öffnet Dialog zum Anlegen -->
         <Button text="➕ Neues Buch" type="Emphasized" press=".onOpenCreateDialog"/>
-
-        <!-- NEU: Suchfeld -->
-        <!-- wichtig: Event beim Tippen -->
-        <!--value="{/filter/searchText}" sorgt dafür, dass Änderungen am Model direkt im Feld sichtbar werden. -->
-    
-      <!-- <SearchField
+        <!-- Event beim Tippen. 
+        value="{/filter/searchText}" sorgt dafür, dass Änderungen am Model direkt im Feld sichtbar werden. -->
+      <SearchField
       width="20rem"
       placeholder="Titel suchen..."
       liveChange=".onSearchBooks"
       value="{/filter/searchText}"    
-      search=".onSearchBooks" /> -->
-
+      search=".onSearchBooks" />
     </Toolbar>
 
-      <!-- NEU: Filter-Bereich für Datumsfilterung -->
-      <!-- 
-        Dieser Bereich ermöglicht es dem Benutzer, Bücher nach dem Anlegedatum zu filtern.
-        Wir verwenden zwei DatePicker-Komponenten für Start- und Enddatum.
-        Der Filter wird automatisch angewendet, sobald sich eines der Daten ändert.
-      -->
+      <!-- Filter-Bereich für Datumsfilterung -->
       <Panel headerText="🔍 Filter nach Anlegedatum" class="sapUiSmallMarginBottom">
         <content>
-          <!-- 
-            HBox dient als Container für die Filter-Elemente.
-            justifyContent="Start" sorgt dafür, dass alle Elemente linksbündig angeordnet werden.
-            alignItems="Center" zentriert alle Elemente vertikal.
-          -->
           <HBox justifyContent="Start" alignItems="Center" class="sapUiSmallMargin">
             
-            <!-- 
-              Label für das Startdatum.
-              "sapUiTinyMarginEnd" fügt einen kleinen rechten Rand hinzu,
-              damit das Label nicht direkt am DatePicker klebt.
-            -->
             <Label text="Von:" class="sapUiTinyMarginEnd"/>
             
-            <!-- 
-              DatePicker für das Startdatum.
-              - value="{/filter/startDate}" bindet den Wert an das Filter-Model
-              - change=".onStartDateChange" ruft die Filter-Funktion auf
-              - tooltip zeigt einen Hinweistext, wenn der Benutzer mit der Maus darüber fährt
-              - displayFormat bestimmt, wie das Datum angezeigt wird (deutsches Format)
-            -->
             <DatePicker 
               value="{/filter/startDate}" 
               change=".onStartDateChange"
@@ -79,19 +36,7 @@ Das ist der Name des Controllers, der für diese View verantwortlich ist. -->
               displayFormat="dd.MM.yyyy"
               class="sapUiTinyMarginEnd"/>
             
-            <!-- 
-              Label für das Enddatum.
-              "sapUiTinyMarginEnd" sorgt für Abstand zum nächsten Element.
-            -->
             <Label text="Bis:" class="sapUiTinyMarginEnd"/>
-            
-            <!-- 
-              DatePicker für das Enddatum.
-              - value="{/filter/endDate}" bindet den Wert an das Filter-Model
-              - change=".onEndDateChange" ruft die Filter-Funktion auf
-              - tooltip zeigt einen Hinweistext, wenn der Benutzer mit der Maus darüber fährt
-              - displayFormat bestimmt, wie das Datum angezeigt wird (deutsches Format)
-            -->
             <DatePicker 
               value="{/filter/endDate}" 
               change=".onEndDateChange"
@@ -99,13 +44,6 @@ Das ist der Name des Controllers, der für diese View verantwortlich ist. -->
               displayFormat="dd.MM.yyyy"
               class="sapUiTinyMarginEnd"/>
             
-            <!-- 
-              Button zum Zurücksetzen des Filters.
-              - type="Transparent" macht den Button weniger prominent
-              - press=".onResetFilter" ruft die Reset-Funktion auf
-              - icon="sap-icon://clear-filter" zeigt ein Lösch-Symbol
-              - tooltip erklärt die Funktion des Buttons
-            -->
             <Button 
               text="Filter zurücksetzen" 
               type="Transparent" 
@@ -119,12 +57,6 @@ Das ist der Name des Controllers, der für diese View verantwortlich ist. -->
             -->
             <ToolbarSpacer/>
             
-            <!-- 
-              Text-Element zeigt die Anzahl der gefilterten Bücher an.
-              - text="{/filter/filteredCount} von {/filter/totalCount} Büchern" 
-                zeigt "X von Y Büchern" an
-              - class="sapUiTinyMarginEnd" fügt einen kleinen rechten Rand hinzu
-            -->
             <Text 
               text="{/filter/filteredCount} von {/filter/totalCount} Büchern" 
               class="sapUiTinyMarginEnd"/>
@@ -132,14 +64,6 @@ Das ist der Name des Controllers, der für diese View verantwortlich ist. -->
         </content>
       </Panel>
 
-      <!-- Tabelle mit allen Büchern -->
-      <!-- 
-        WICHTIG: Die Tabelle ist jetzt an {/filteredBooks} gebunden, nicht mehr an {/books}.
-        Das bedeutet:
-        - Wenn kein Filter gesetzt ist: Alle Bücher werden angezeigt
-        - Wenn ein Filter gesetzt ist: Nur die gefilterten Bücher werden angezeigt
-        - Die Filterung passiert automatisch im Controller
-      -->
       <Table
         items="{/filteredBooks}"
         inset="false"
@@ -177,7 +101,7 @@ Das ist der Name des Controllers, der für diese View verantwortlich ist. -->
               <HBox justifyContent="Center" alignItems="Center">
                 <!-- Bearbeiten-Button: ruft onEditBook auf -->
                 <Button icon="sap-icon://edit" tooltip="Bearbeiten" press=".onEditBook"/>
-                <!-- Löschen-Button: ruft onDeleteBook auf -->
+                <!-- Löschen-Button: ruft onDeleteBook auf. Zunächst auskommentiert --> 
                 <!-- <Button icon="sap-icon://delete" tooltip="Löschen" type="Transparent" press=".onDeleteBook"/> -->
               </HBox>
             </cells>

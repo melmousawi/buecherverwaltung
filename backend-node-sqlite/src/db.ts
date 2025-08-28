@@ -24,12 +24,7 @@ export async function initDB() {
       createdBy TEXT NOT NULL
     )
   `);
-
-  // Für Demo: Tabelle leeren, damit nur diese Daten drin sind
-  // await db.exec(`DELETE FROM books`);
-
-  //   // Seed-Daten, falls leer
-//   const result = await db.get<{count: number}>('SELECT COUNT(*) as count FROM books');
+  
 
   const now = new Date();
 

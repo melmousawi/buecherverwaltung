@@ -15,6 +15,7 @@ router.get('/', async (req, res) => {
 
   if (q) {
     query += ' AND title LIKE ?';
+    //  query += ' AND (title LIKE ? OR author LIKE ?)';
     params.push(`%${q}%`);
   }
   if (dateFrom) {
