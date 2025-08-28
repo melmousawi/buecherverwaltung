@@ -6,7 +6,6 @@
 import sqlite3 from 'sqlite3';
 import { open } from 'sqlite';
 
-
 // Async-Funktion zum Öffnen der DB
 export async function initDB() {
   const db = await open({
@@ -24,7 +23,6 @@ export async function initDB() {
       createdBy TEXT NOT NULL
     )
   `);
-  
 
   const now = new Date();
 

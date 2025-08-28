@@ -13,7 +13,7 @@
         <!-- Button öffnet Dialog zum Anlegen -->
         <Button text="➕ Neues Buch" type="Emphasized" press=".onOpenCreateDialog"/>
         <!-- Event beim Tippen. 
-        value="{/filter/searchText}" sorgt dafür, dass Änderungen am Model direkt im Feld sichtbar werden. -->
+        value="{/filter/searchText}" bindet den Wert an das Filter-Model und sorgt dafür, dass Änderungen am Model direkt im Feld sichtbar werden. -->
       <SearchField
       width="20rem"
       placeholder="Titel suchen..."
@@ -50,13 +50,11 @@
               press=".onResetFilter"
               icon="sap-icon://clear-filter"
               tooltip="Alle Filter zurücksetzen und alle Bücher anzeigen"/>
-            
             <!-- 
               ToolbarSpacer sorgt dafür, dass der folgende Text rechtsbündig angezeigt wird.
               Ohne diesen Spacer würden alle Elemente linksbündig angeordnet.
             -->
             <ToolbarSpacer/>
-            
             <Text 
               text="{/filter/filteredCount} von {/filter/totalCount} Büchern" 
               class="sapUiTinyMarginEnd"/>
@@ -68,14 +66,12 @@
         items="{/filteredBooks}"
         inset="false"
         class="sapUiResponsiveMargin">
-
         <!-- Header der Tabelle -->
         <headerToolbar>
           <Toolbar>
             <Title text="Bücher" level="H3"/>
           </Toolbar>
         </headerToolbar>
-
         <!-- Spalten -->
         <columns>
           <Column><Text text="Titel"/></Column>
@@ -84,7 +80,6 @@
           <Column><Text text="Angelegt von"/></Column>
           <Column hAlign="Center" width="10rem"><Text text="Aktionen"/></Column>
         </columns>
-
         <!-- Zeilen-Template: Bindung an jedes Buch-Objekt -->
         <items>
           <ColumnListItem>
